@@ -5,70 +5,9 @@ const TopProductsRender = React.lazy(() => import("./TopProductsRender"));
 class TopProducts extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
-      counter: 1,
-      products: [
-        {
-          title: "Product1",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product2",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product3",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product4",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product5",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product6",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product7",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product8",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product9",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product10",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product11",
-          price: 199,
-          img: "/public/img/prod.png"
-        },
-        {
-          title: "Product12",
-          price: 199,
-          img: "/public/img/prod.png"
-        }
-      ]
+      counter: 1    
     };
     this.moreHandle = this.moreHandle.bind(this);
     this.lessHandle = this.lessHandle.bind(this);
@@ -88,7 +27,7 @@ class TopProducts extends React.Component {
 
   render() {
     let moreBtn;
-    if (this.state.counter * 4 >= this.state.products.length) {
+    if (this.state.counter * 4 >= this.props.products.length) {
       moreBtn = (
         <div className="moreBtn" onClick={this.lessHandle}>
           LESS
@@ -102,12 +41,15 @@ class TopProducts extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="TP">
+      <h2>
+        {this.props.title}
+      </h2>
         <div>
           <Suspense fallback={<div>loading...</div>}>
             <TopProductsRender
               counter={this.state.counter}
-              products={this.state.products}
+              products={this.props.products}
             />
           </Suspense>
         </div>
